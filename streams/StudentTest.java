@@ -18,8 +18,19 @@ public class StudentTest {
 		allStudents.add(student3);
 
 		System.out.println(allStudents);
+		
 		allStudents.stream().filter(s -> s.getStudentClass().equals("5")).sorted(Comparator.comparing(Student::getStudentName).reversed())
 				.forEach(s -> System.out.println(s.getStudentName() + " " + s.getStudentMark()));
+		
+		
+		allStudents.stream().filter(s -> s.getStudentClass().equals("5"))
+				.sorted(Comparator.comparing(Student::getStudentMark)).forEach(System.out::println);
+		
+		//To new list - Creation
+		List<Student> newList = allStudents.stream().filter(s -> s.getStudentClass().equals("5"))
+				.collect(Collectors.toCollection(LinkedList<Student>::new));
+		System.out.println(newList);
+		
 	}
 
 }
